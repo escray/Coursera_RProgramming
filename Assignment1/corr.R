@@ -17,14 +17,23 @@ corr <- function(directory, threshold = 0) {
                 data <- read.csv(i)
                 complete <- data[complete.cases(data), ]
                 
+                
                 if (nrow(complete) >= threshold){
-                        result[index] <- round(cor(complete$nitrate, complete$sulfate), digit = 5)
-                        index <- index + 1
+                        
+                        
+                        temp <- cor(complete$nitrate, complete$sulfate)
+                        if (!is.na(temp) && !is.nan(temp)) {
+                                result[index] <- temp
+                                index <- index + 1
+                        }
+                        
                 }
                 
         }
         if (is.na(result[1])) {
-                result <- 0
+                result <- numeric(0)
         }
         result
+        ##return(result)
 }
+result
