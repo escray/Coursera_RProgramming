@@ -29,8 +29,8 @@ best <- function(state, outcome) {
         df <- df[complete.cases(df), ]
         
         orderdata <- df[df$state == state, ]
-        orderdata <- orderdata[order(orderdata[, 3], orderdata[, 2]),]
-        ## return(head(orderdata, 6))
-        head(orderdata, 1)[1, 1]
+        orderdata <- orderdata[order(orderdata[, 3], orderdata[, 1]),]
         ## Return hospital name in the state with lowest 30-day death rate
+        ## return(head(orderdata, 6))
+        return(head(orderdata, 1)[1, 1])
 }
